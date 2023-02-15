@@ -1,0 +1,25 @@
+{% extends 'homepage.html' %}
+
+{% block content %}
+<br><br>
+    <div class="signup" style = "width: 600px; margin: 0 auto;">
+        <br><h1>UREDI KUKCA</h1><br>
+        <form class="site-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                <p>
+                  {{form.as_table}}
+                  {% if field.help_text %}
+                    <small style="color: white">{{ field.help_text }}</small>
+                  {% endif %}
+                  {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </p>
+              </table>
+        <br><br><br>
+            <button type="submit">SPREMI</button>
+        </form>
+    </div>
+<br>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'homepage.html' %}
+
+{% block content %}
+<br><br>
+<div class = "signup" style = "Width: 600px; margin: 0 auto;">
+  <br>
+  <h1>SIGN UP</h1>
+  <br><br><p>Postanite korisnik i podijelite Vašu ljubav prema kukcima sa nama!<br>Ako već jeste korisnik, &nbsp;<a class = "eksterna-prijava" href = "/accounts/login">prijavite se.</a><br><br></p>
+  <form class = "signup-form" method="post">
+    {% csrf_token %}
+    <table>
+      <p>
+        {{ form.as_table }}
+        {% if field.help_text %}
+          <small style="color: white">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    </table>
+    <br><br>
+    <button type="submit">SIGN UP</button>
+  </form>
+</div>
+{% endblock %}

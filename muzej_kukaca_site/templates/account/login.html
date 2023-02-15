@@ -1,0 +1,40 @@
+{% extends "homepage.html" %}
+
+{% block content %}
+<br><br>
+<div class = "signup" style ="margin: 0 auto; width: 600px;">
+    <br>
+    <h1>SIGN IN </h1><br>
+    <br><p>Prijavite se. Ukoliko niste korisnik, &nbsp;<a class = "eksterna-prijava" href = "/accounts/signup">kreirajte novi račun.</a></p><br>
+    {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+        {% else %}
+        <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
+
+    <form class = "signup-form" method="post">
+        {% csrf_token %}
+        <table>
+          <p>
+            {{form.as_table}}
+            {% if field.help_text %}
+              <small style="color: white">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+              <p style="color: red">{{ error }}</p>
+            {% endfor %}
+          </p>
+        </table>
+        <br><br>
+        <button type="submit">SIGN IN</button>
+      </form>
+</div>
+
+{% endblock %}

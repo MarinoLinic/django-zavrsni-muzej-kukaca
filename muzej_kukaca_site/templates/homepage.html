@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Muzej Kukaca</title>
+    <link rel="icon"href="{% static 'favicon.ico' %}">
+
+</head>
+
+<body>
+    <nav class = "navbar" style = "font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+            {% if user.is_authenticated %}
+                <ul class = "nav-links">
+                    <div class = "menu"></div>
+                        <li class = "active" style = "float:left;"><a href="/">MUZEJ KUKACA</a></li>
+                        <li style = "float:left;"><a href="/kukacs">KUKCI</a></li>
+                        <li style = "float:left;"><a href = "/create">DODAJ</a></li>
+                        <li style = "float:right;"><a href="/accounts/logout">Sign Out</a></li>
+                    </ul>
+                    </div>
+                </ul>                        
+
+            {% else %}
+                <ul class = "nav-links2">
+                    <div class = "menu2">
+                        <li style = "float:left;"><a href="/">MUZEJ KUKACA</a></li>
+                        <li style = "float:left;"><a href="/kukacs">KUKCI</a></li>
+                        <li style = "float:right;"><a href="/accounts/login">Sign In</a></li>
+                        <li style = "float:right;"><a href="/accounts/signup">Sign Up</a></li>
+                    </div>
+                </ul>
+            
+            {% endif %}
+    </nav>
+
+<br><br>
+   
+{% block content %}
+<br><br>
+<div class = "uvod" style = "width: 600px; margin: 0 auto;">
+    <br>
+    {% if user.is_authenticated %}
+    <p>Ulogirani ste. Vaše ime: {{ user.username }}</p>
+    {% else %}
+        <p>Niste prijavljeni.</p>
+    {% endif %}
+    <br>
+    <h1 class = "glavniNaslov">MUZEJ KUKACA</h1><br>
+    <div>
+        <h2> Opis projekta </h2><br>
+        <p>"Muzej Kukaca" je Django projekt kreiran kao rad za završni ispit iz kolegija "Programiranje za Web".
+            Svrha aplikacije je prikazivanje, dodavanje i uređivanje raznoraznih kukaca od strane korisnika koji ima mogućnost prijave i odjave.</p><br><br>
+        <h2> Arhitektura </h2><br>
+        <p>Projekt je kreiran koristeći jednan model, <i>Kukac</i>. Model sadrži podatke o kukcu: vrstu, porodicu, red, spol, duljinu, lokalitet, datum sakupljanja, opis, sliku i  korisničko ime lovca kukca.
+            <br>Korisnik ima mogućnost prijave. Ovo je ostvareno pomoću built-in USER_AUTH_MODEL modela untar Django-a.
+            <br>Korisnik koji nije ulogiran ima mogućnost pregledavanja kukaca i prijave.
+            <br>Korisnik koji je ulogiran ima mogućnost pregledavanja, dodavanja, uređivanja i brisanja kukaca.
+            <br>Korišten je Factory Boy za generičko popunjavanje s nasumičnim 'kukcima' te su i naknadno dodani neki kukci.</p>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>
