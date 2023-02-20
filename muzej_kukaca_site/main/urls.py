@@ -5,7 +5,7 @@ app_name = 'main'
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
-    path('kukacs/', views.KukacList.as_view()),
+    path('kukacs/', views.KukacList.as_view(), name = 'kukacs'),
     path('kukac_list', views.display_kukac_images, name = 'list'),
     path('create/', views.KukacCreateView.as_view(), name = 'create'),
     path('kukacs/<int:pk>', views.KukacDetailView.as_view(), name = 'detail'),
