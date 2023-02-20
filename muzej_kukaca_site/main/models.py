@@ -1,8 +1,6 @@
 from django.db import models
 from django.conf import settings
 
-
-
 class Kukac(models.Model):
     vrsta = models.CharField(max_length = 100)
     porodica = models.CharField(max_length = 100)
@@ -12,8 +10,8 @@ class Kukac(models.Model):
     lokalitet = models.CharField(max_length = 100)
     datum_sakupljanja = models.DateTimeField(blank=True, null=True)    
     opis = models.TextField()
-    slika = models.ImageField(upload_to = 'images/')
-    lovac = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default = '0')
+    slika = models.ImageField(upload_to = 'images/', null=True, blank=True)
+    lovac = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default = '0', null=True, blank=True)
 
     GENDER_MALE = 'M'
     GENDER_FEMALE = 'Ž'
