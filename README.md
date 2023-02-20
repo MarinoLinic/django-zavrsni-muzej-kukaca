@@ -1,5 +1,8 @@
 # Muzej Kukaca
 
+## URL na repozitorij na GitHubu
+https://github.com/MarinoLinic/django-zavrsni-muzej-kukaca
+
 ## Opis projekta
 "Muzej Kukaca" je Django projekt kreiran kao završni rad iz kolegija "Programiranje za Web".
 Svrha aplikacije je prikazivanje, dodavanje i uređivanje raznoraznih kukaca od strane korisnika koji ima mogućnost prijave i odjave.
